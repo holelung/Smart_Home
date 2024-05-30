@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smart_home_project/screens/firedetect_screen.dart';
 import 'package:smart_home_project/screens/light_screen.dart';
 import 'package:smart_home_project/screens/main_content_screen.dart';
 import 'package:smart_home_project/screens/security_screen.dart';
@@ -46,6 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
         page = const LightScreen();
         break;
       case 4:
+        page = const FiredetectScreen();
+        break;
+      case 5:
         page = const SettingScreen();
         break;
       default:
@@ -86,6 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             NavigationRailDestination(
                               icon: FaIcon(FontAwesomeIcons.lightbulb),
                               label: Text('Lighting'),
+                            ),
+                            NavigationRailDestination(
+                              icon: FaIcon(FontAwesomeIcons.fire),
+                              label: Text('FireDetect'),
                             ),
                             NavigationRailDestination(
                               icon: FaIcon(FontAwesomeIcons.gear),
