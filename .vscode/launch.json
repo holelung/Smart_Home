@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "smart_home_project",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_home_project (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "smart_home_project (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "smart_home_project (chrome)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "deviceId": "chrome"
+        },
+        {
+            "name": "smart_home_project (iOS Simulator)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "deviceId": "ios"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": [
+                "smart_home_project (chrome)",
+                "smart_home_project (iOS Simulator)"
+            ]
+        }
+    ]
+}
