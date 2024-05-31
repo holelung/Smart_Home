@@ -15,6 +15,4 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # Smart_Home
-
-### Firebase Hosting Link
-[text](https://cdss-71838.web.app/)
+[Firebase Hosting Link](https://cdss-71838.web.app/)
