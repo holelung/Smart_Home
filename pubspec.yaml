@@ -33,6 +33,9 @@ dependencies:
   provider: ^6.0.3
   font_awesome_flutter: ^10.1.0
   percent_indicator: ^4.2.2
+  reorderable_grid_view: ^2.2.6
+  flutter_reorderable_grid_view: ^4.0.0
+
 
 
 
@@ -92,6 +95,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-
+linter:
+  rules:
+    - library_private_types_in_public_api
     
