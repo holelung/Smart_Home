@@ -1,65 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smart_home_project/widgets/device_card_widget.dart';
-import 'package:smart_home_project/widgets/toggle_button.dart';
+import 'package:flutter_reorderable_grid_view/entities/order_update_entity.dart';
+import 'package:flutter_reorderable_grid_view/widgets/widgets.dart';
 
-class LightScreen extends StatelessWidget {
+class LightScreen extends StatefulWidget {
   const LightScreen({super.key});
 
   @override
+  State<LightScreen> createState() => _LightScreenState();
+}
+
+class _LightScreenState extends State<LightScreen> {
+  final _scrollController = ScrollController();
+  final _gridViewKey = GlobalKey();
+  final rooms = <String>[
+    "Living Room",
+    "Bed Room",
+    "Bath Room",
+    "Kitchen",
+  ];
+  var isMobile = false;
+  // 모바일 화면인지 체크
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    isMobile = MediaQuery.of(context).size.width < 600;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: ToggleCard(
-                  title: 'LivingRoom',
-                  icon: Icons.family_restroom,
-                  status: 'On',
-                  active: true,
-                ),
+    final generatedChildren = List.generate(
+      rooms.length,
+      (index) => Container(
+        key: Key(rooms.elementAt(index)),
+        color: Colors.lightBlue,
+        child: Text(
+          rooms.elementAt(index),
+        ),
+      ),
+    );
+
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Scaffold(
+        body: ReorderableBuilder(
+          longPressDelay: const Duration(milliseconds: 200),
+          scrollController: _scrollController,
+          onReorder: (List<OrderUpdateEntity> orderUpdateEntities) {
+            for (final orderUpdateEntity in orderUpdateEntities) {
+              final room = rooms.removeAt(orderUpdateEntity.oldIndex);
+              rooms.insert(orderUpdateEntity.newIndex, room);
+            }
+          },
+          builder: (children) {
+            return GridView(
+              key: _gridViewKey,
+              controller: _scrollController,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: isMobile ? 1 : 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
               ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ToggleCard(
-                  title: 'Kitchen',
-                  icon: Icons.kitchen,
-                  status: 'On',
-                  active: true,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ToggleCard(
-                  title: 'Toilet',
-                  icon: Icons.shower,
-                  status: 'On',
-                  active: true,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ToggleCard(
-                  title: 'room1',
-                  icon: Icons.sensor_door_sharp,
-                  status: 'On',
-                  active: true,
-                ),
-              ),
-            ],
-          ),
-        ],
+              children: children,
+            );
+          },
+          children: generatedChildren,
+        ),
       ),
     );
   }
