@@ -89,19 +89,16 @@ class _LightScreenState extends State<LightScreen> {
                     });
                   },
                 ),
+                Text(
+                  status[index] == "On" ? "On" : "Off",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: status[index] == "On" ? Colors.blue : Colors.grey,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 10.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 48.0),
-              child: Text(
-                status[index] == "On" ? "On" : "Off",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: status[index] == "On" ? Colors.blue : Colors.grey,
-                ),
-              ),
-            ),
           ],
         ),
       ),
@@ -127,6 +124,7 @@ class _LightScreenState extends State<LightScreen> {
                 crossAxisCount: isMobile ? 1 : 2,
                 mainAxisSpacing: 1,
                 crossAxisSpacing: 20,
+                childAspectRatio: (isMobile ? 1.5 : 2),
               ),
               children: children,
             );
