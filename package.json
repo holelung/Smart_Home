@@ -6,7 +6,7 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "firebase": "^10.12.2"
+    "firebase": "^13.10.2"
   },
   "devDependencies": {
     "firebase-tools": "^9.23.3"
