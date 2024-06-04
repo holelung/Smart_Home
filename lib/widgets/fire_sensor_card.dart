@@ -8,7 +8,7 @@ class FireSensorCard extends StatefulWidget {
   final bool flameDetected;
   final bool motionDetected;
   final double temperature;
-  final bool Danger;
+  final bool danger;
 
   const FireSensorCard({
     super.key,
@@ -18,7 +18,7 @@ class FireSensorCard extends StatefulWidget {
     required this.flameDetected,
     required this.motionDetected,
     required this.temperature,
-    required this.Danger,
+    required this.danger,
   });
 
   @override
@@ -27,10 +27,12 @@ class FireSensorCard extends StatefulWidget {
 
 class _FireSensorCardState extends State<FireSensorCard> {
   late bool _isDanger;
+  final double iconSize = 20;
+
   @override
   void initState() {
     super.initState();
-    _isDanger = widget.Danger;
+    _isDanger = widget.danger;
   }
 
   @override
@@ -41,6 +43,7 @@ class _FireSensorCardState extends State<FireSensorCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 카드 제목
             Row(
               children: [
                 FaIcon(
@@ -58,11 +61,15 @@ class _FireSensorCardState extends State<FireSensorCard> {
               ],
             ),
             const SizedBox(height: 10.0),
+            // 가스 감지 센서
             Row(
               children: [
                 Icon(
-                  widget.gasDetected ? Icons.check_circle : Icons.remove_circle,
-                  color: widget.gasDetected ? Colors.green : Colors.red,
+                  widget.gasDetected
+                      ? FontAwesomeIcons.circleExclamation
+                      : FontAwesomeIcons.circleCheck,
+                  color: widget.gasDetected ? Colors.red : Colors.green,
+                  size: iconSize,
                 ),
                 const SizedBox(width: 5.0),
                 Text(
@@ -75,13 +82,15 @@ class _FireSensorCardState extends State<FireSensorCard> {
                 const SizedBox(width: 10.0),
               ],
             ),
+            // 불꽃 감지 센서
             Row(
               children: [
                 Icon(
                   widget.flameDetected
-                      ? Icons.check_circle
-                      : Icons.remove_circle,
-                  color: widget.flameDetected ? Colors.green : Colors.red,
+                      ? FontAwesomeIcons.circleExclamation
+                      : FontAwesomeIcons.circleCheck,
+                  color: widget.flameDetected ? Colors.red : Colors.green,
+                  size: iconSize,
                 ),
                 const SizedBox(width: 5.0),
                 Text(
@@ -94,13 +103,15 @@ class _FireSensorCardState extends State<FireSensorCard> {
                 const SizedBox(width: 10.0),
               ],
             ),
+            // 모션감지 센서
             Row(
               children: [
                 Icon(
                   widget.motionDetected
-                      ? Icons.check_circle
-                      : Icons.remove_circle,
-                  color: widget.motionDetected ? Colors.green : Colors.red,
+                      ? FontAwesomeIcons.circleExclamation
+                      : FontAwesomeIcons.circleCheck,
+                  color: widget.motionDetected ? Colors.red : Colors.green,
+                  size: iconSize,
                 ),
                 const SizedBox(width: 5.0),
                 Text(
@@ -113,6 +124,7 @@ class _FireSensorCardState extends State<FireSensorCard> {
                 const SizedBox(width: 10.0),
               ],
             ),
+            // 온도 센서
             const SizedBox(height: 10.0),
             Text(
               'Temperature: ${widget.temperature}°C',

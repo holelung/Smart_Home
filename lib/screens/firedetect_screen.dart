@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_project/widgets/fire_card.dart';
+import 'package:smart_home_project/widgets/fire_sensor_card.dart';
 
 class FiredetectScreen extends StatelessWidget {
   const FiredetectScreen({super.key});
@@ -17,10 +17,10 @@ class FiredetectScreen extends StatelessWidget {
                 title: 'LivingRoom Fire Sensor',
                 icon: Icons.family_restroom,
                 gasDetected: false, // 가스 감지 여부
-                flameDetected: true, // 불꽃 감지 여부
+                flameDetected: false, // 불꽃 감지 여부
                 motionDetected: false, // 인체 감지 여부
                 temperature: 23.5, // 온도 센서 값
-                Danger: true,
+                danger: false,
               ),
             ),
             Container(
@@ -33,7 +33,7 @@ class FiredetectScreen extends StatelessWidget {
                 flameDetected: false, // 불꽃 감지 여부
                 motionDetected: false, // 인체 감지 여부
                 temperature: 24.0, // 온도 센서 값
-                Danger: false,
+                danger: true,
               ),
             ),
             Container(
@@ -46,7 +46,7 @@ class FiredetectScreen extends StatelessWidget {
                 flameDetected: true, // 불꽃 감지 여부
                 motionDetected: true, // 인체 감지 여부
                 temperature: 22.8, // 온도 센서 값
-                Danger: false,
+                danger: true,
               ),
             ),
             Container(
@@ -59,7 +59,7 @@ class FiredetectScreen extends StatelessWidget {
                 flameDetected: false, // 불꽃 감지 여부
                 motionDetected: true, // 인체 감지 여부
                 temperature: 25.2, // 온도 센서 값
-                Danger: true,
+                danger: true,
               ),
             ),
           ],
