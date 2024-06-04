@@ -11,7 +11,7 @@ class FiredetectScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.5, // 화면 너비의 90%로 설정
+              width: MediaQuery.of(context).size.width * 0.9, // 화면 너비의 90%로 설정
               margin: const EdgeInsets.symmetric(vertical: 10.0),
               child: const FireSensorCard(
                 title: 'LivingRoom Fire Sensor',
@@ -24,7 +24,7 @@ class FiredetectScreen extends StatelessWidget {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.5, // 화면 너비의 90%로 설정
+              width: MediaQuery.of(context).size.width * 0.9, // 화면 너비의 90%로 설정
               margin: const EdgeInsets.symmetric(vertical: 10.0),
               child: const FireSensorCard(
                 title: 'Kitchen Fire Sensor',
@@ -37,7 +37,7 @@ class FiredetectScreen extends StatelessWidget {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.5, // 화면 너비의 90%로 설정
+              width: MediaQuery.of(context).size.width * 0.9, // 화면 너비의 90%로 설정
               margin: const EdgeInsets.symmetric(vertical: 10.0),
               child: const FireSensorCard(
                 title: 'Toilet Fire Sensor',
@@ -50,7 +50,7 @@ class FiredetectScreen extends StatelessWidget {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.5, // 화면 너비의 90%로 설정
+              width: MediaQuery.of(context).size.width * 0.9, // 화면 너비의 90%로 설정
               margin: const EdgeInsets.symmetric(vertical: 10.0),
               child: const FireSensorCard(
                 title: 'Room 1 Fire Sensor',
