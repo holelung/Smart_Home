@@ -1,6 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reorderable_grid_view/entities/order_update_entity.dart';
 import 'package:flutter_reorderable_grid_view/widgets/widgets.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class TemperatureScreen extends StatefulWidget {
   const TemperatureScreen({super.key});
@@ -10,6 +13,8 @@ class TemperatureScreen extends StatefulWidget {
 }
 
 class _TemperatureScreenState extends State<TemperatureScreen> {
+  final ref = FirebaseDatabase.instance.ref('SmartHome/LivingRoom');
+
   final _scrollController = ScrollController();
   final _gridViewKey = GlobalKey();
   final rooms = <String>[
@@ -82,7 +87,17 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
               ],
             ),
             const SizedBox(height: 10),
-            Text("Temperature : ${Temperature[index]} °C")
+            Expanded(
+              child: FirebaseAnimatedList(
+                query: ref.child('Tem'),
+                itemBuilder: (context, snapshot, animation, index) {
+                  return ListTile(
+                    title: Text(
+                        "Temperature : ${snapshot.child('LivingRoom_Tem').value}°C"),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
