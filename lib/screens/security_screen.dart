@@ -14,13 +14,13 @@ class _SecurityScreenState extends State<SecurityScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    isMobile = MediaQuery.of(context).size.width < 600;
+    isMobile = MediaQuery.of(context).size.width < 1100;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       child: isMobile
           ? SingleChildScrollView(
               child: Column(

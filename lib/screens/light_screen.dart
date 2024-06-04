@@ -38,7 +38,7 @@ class _LightScreenState extends State<LightScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    isMobile = MediaQuery.of(context).size.width < 600;
+    isMobile = MediaQuery.of(context).size.width < 900;
   }
 
   @override
