@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reorderable_grid_view/entities/order_update_entity.dart';
 import 'package:flutter_reorderable_grid_view/widgets/widgets.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class TemperatureScreen extends StatefulWidget {
   const TemperatureScreen({super.key});
