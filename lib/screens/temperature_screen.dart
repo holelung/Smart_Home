@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reorderable_grid_view/entities/order_update_entity.dart';
 import 'package:flutter_reorderable_grid_view/widgets/widgets.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class TemperatureScreen extends StatefulWidget {
   const TemperatureScreen({super.key});
@@ -18,8 +19,25 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
     "Bath Room",
     "Kitchen",
   ];
+
+  final icons = <IconData>[
+    Icons.family_restroom,
+    Icons.kitchen,
+    Icons.bathtub_outlined,
+    Icons.sensor_door_sharp
+  ];
+
+  final status = <String>[
+    "Normal",
+    "Normal",
+    "Normal",
+    "Normal",
+  ];
+
+  final Temperature = [1, 2, 3, 4];
+
   var isMobile = false;
-  // 모바일 화면인지 체크
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -32,15 +50,47 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
       rooms.length,
       (index) => Container(
         key: Key(rooms.elementAt(index)),
-        color: Colors.lightGreen,
-        child: Text(
-          rooms.elementAt(index),
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 6,
+              offset: const Offset(2, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(
+                  icons[index],
+                  color: status[index] == "On" ? Colors.blue : Colors.grey,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  rooms.elementAt(index),
+                ),
+                const SizedBox(width: 10),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text("Temperature : ${Temperature[index]} °C")
+          ],
         ),
       ),
     );
 
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       child: Scaffold(
         body: ReorderableBuilder(
           longPressDelay: const Duration(milliseconds: 200),
@@ -57,8 +107,9 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
               controller: _scrollController,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: isMobile ? 1 : 2,
-                mainAxisSpacing: 20,
+                mainAxisSpacing: 1,
                 crossAxisSpacing: 20,
+                childAspectRatio: (isMobile ? 1.5 : 2),
               ),
               children: children,
             );

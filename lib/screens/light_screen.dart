@@ -54,15 +54,15 @@ class _LightScreenState extends State<LightScreen> {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5), // 투명도 증가
+              color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5,
-              blurRadius: 6, // 블러 반경 감소
-              offset: const Offset(2, 2), // 오프셋 조정
+              blurRadius: 6,
+              offset: const Offset(2, 2),
             ),
           ],
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min, // Column의 높이를 자식들의 높이로 설정
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
@@ -76,7 +76,7 @@ class _LightScreenState extends State<LightScreen> {
                 Text(
                   rooms.elementAt(index),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10),
                 IconButton(
                   iconSize: 40,
                   icon: Icon(
@@ -98,14 +98,14 @@ class _LightScreenState extends State<LightScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
           ],
         ),
       ),
     );
 
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20), // TemperatureScreen의 패딩 값과 동일하게 설정
       child: Scaffold(
         body: ReorderableBuilder(
           longPressDelay: const Duration(milliseconds: 200),
