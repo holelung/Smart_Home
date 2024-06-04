@@ -22,39 +22,43 @@ class _SecurityScreenState extends State<SecurityScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       child: isMobile
-          ? Column(
-              children: [
-                Image.network(
-                  'https://st.depositphotos.com/2274151/3518/i/450/depositphotos_35186549-stock-photo-sample-grunge-red-round-stamp.jpg',
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                const Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SecurityButton(
-                        text: '통화',
-                        icon: Icons.call,
-                      ),
-                      SecurityButton(
-                        text: '열림',
-                        icon: Icons.lock_open_rounded,
-                      ),
-                      SecurityButton(
-                        text: '방범',
-                        icon: Icons.sensor_occupied_rounded,
-                      ),
-                      SecurityButton(
-                        text: '기록',
-                        icon: Icons.folder_open_rounded,
-                      ),
-                    ],
+          ? SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.network(
+                    'https://st.depositphotos.com/2274151/3518/i/450/depositphotos_35186549-stock-photo-sample-grunge-red-round-stamp.jpg',
                   ),
-                )
-              ],
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Flexible(
+                    fit: FlexFit.loose,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SecurityButton(
+                          text: '통화',
+                          icon: Icons.call,
+                        ),
+                        SecurityButton(
+                          text: '열림',
+                          icon: Icons.lock_open_rounded,
+                        ),
+                        SecurityButton(
+                          text: '방범',
+                          icon: Icons.sensor_occupied_rounded,
+                        ),
+                        SecurityButton(
+                          text: '기록',
+                          icon: Icons.folder_open_rounded,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             )
           : Row(
               children: [
