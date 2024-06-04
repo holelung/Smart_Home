@@ -1,17 +1,15 @@
 {
+  "name": "flutter-firebase-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "flutter build web",
+    "deploy": "firebase deploy"
+  },
   "dependencies": {
     "firebase": "^10.12.2"
   },
-  
-    "name": "flutter-firebase-app",
-    "version": "1.0.0",
-    "scripts": {
-      "build": "flutter build web",
-      "deploy": "firebase deploy"
-    },
-    "devDependencies": {
-      "firebase-tools": "^9.0.0"
-    }
-  
-  
+  "devDependencies": {
+    "firebase-tools": "^9.23.3"
+  }
 }
+
