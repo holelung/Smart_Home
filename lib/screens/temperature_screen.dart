@@ -77,7 +77,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
               children: [
                 Icon(
                   icons[index],
-                  color: status[index] == "On" ? Colors.blue : Colors.grey,
+                  color: Colors.black,
                 ),
                 const SizedBox(width: 8),
                 Text(
