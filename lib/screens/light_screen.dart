@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reorderable_grid_view/entities/order_update_entity.dart';
 import 'package:flutter_reorderable_grid_view/widgets/widgets.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class LightScreen extends StatefulWidget {
   const LightScreen({super.key});
@@ -10,6 +13,8 @@ class LightScreen extends StatefulWidget {
 }
 
 class _LightScreenState extends State<LightScreen> {
+  final ref = FirebaseDatabase.instance.ref('SmartHome/LivingRoom');
+
   final _scrollController = ScrollController();
   final _gridViewKey = GlobalKey();
   final rooms = <String>[
@@ -24,13 +29,6 @@ class _LightScreenState extends State<LightScreen> {
     Icons.kitchen,
     Icons.shower,
     Icons.sensor_door_sharp
-  ];
-
-  final status = <String>[
-    "Off",
-    "Off",
-    "Off",
-    "Off",
   ];
 
   var isMobile = false;
@@ -65,40 +63,49 @@ class _LightScreenState extends State<LightScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  icons[index],
-                  color: status[index] == "On" ? Colors.blue : Colors.grey,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  rooms.elementAt(index),
-                ),
-                const SizedBox(width: 10),
-                IconButton(
-                  iconSize: 40,
-                  icon: Icon(
-                    status[index] == "On" ? Icons.toggle_on : Icons.toggle_off,
-                  ),
-                  color: status[index] == "On" ? Colors.blue : Colors.grey,
-                  onPressed: () {
-                    setState(() {
-                      status[index] = status[index] == "On" ? "Off" : "On";
-                    });
-                  },
-                ),
-                Text(
-                  status[index] == "On" ? "On" : "Off",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: status[index] == "On" ? Colors.blue : Colors.grey,
-                  ),
-                ),
-              ],
-            ),
             const SizedBox(height: 10),
+            Expanded(
+              child: FirebaseAnimatedList(
+                query: ref.child('Light'),
+                itemBuilder: (context, snapshot, animation, idx) {
+                  String ledState =
+                      snapshot.child('LivingRoom_LED_STATE').value.toString();
+                  bool isOn = ledState == 'On';
+
+                  return Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            icons[index],
+                            color: isOn ? Colors.blue : Colors.grey,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(rooms.elementAt(index)),
+                          const SizedBox(width: 10),
+                          IconButton(
+                            iconSize: 40,
+                            icon: Icon(
+                              isOn ? Icons.toggle_on : Icons.toggle_off,
+                            ),
+                            color: isOn ? Colors.blue : Colors.grey,
+                            onPressed: () {
+                              String newState = isOn ? 'Off' : 'On';
+                              ref
+                                  .child('Light')
+                                  .update({'LivingRoom_LED_STATE': newState});
+                            },
+                          ),
+                        ],
+                      ),
+                      ListTile(
+                        title: Text("LED : $ledState"),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
