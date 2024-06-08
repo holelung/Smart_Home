@@ -13,21 +13,14 @@ class LightScreen extends StatefulWidget {
 }
 
 class _LightScreenState extends State<LightScreen> {
-  final ref = FirebaseDatabase.instance.ref('SmartHome/LivingRoom');
-
   final _scrollController = ScrollController();
   final _gridViewKey = GlobalKey();
-  final rooms = <String>[
-    "Living Room",
-    "Bed Room",
-    "Bath Room",
-    "Kitchen",
-  ];
+  final rooms = <String>['LivingRoom', 'Kitchen', 'Toilet', 'Room1'];
 
   final icons = <IconData>[
     Icons.family_restroom,
     Icons.kitchen,
-    Icons.shower,
+    Icons.bathtub_outlined,
     Icons.sensor_door_sharp
   ];
 
@@ -66,10 +59,14 @@ class _LightScreenState extends State<LightScreen> {
             const SizedBox(height: 10),
             Expanded(
               child: FirebaseAnimatedList(
-                query: ref.child('Light'),
+                query: FirebaseDatabase.instance
+                    .ref('SmartHome/${rooms[index]}')
+                    .child('Light'),
                 itemBuilder: (context, snapshot, animation, idx) {
-                  String ledState =
-                      snapshot.child('LivingRoom_LED_STATE').value.toString();
+                  String ledState = snapshot
+                      .child('${rooms[index]}_LED_STATE')
+                      .value
+                      .toString();
                   bool isOn = ledState == 'On';
 
                   return Column(
@@ -91,9 +88,11 @@ class _LightScreenState extends State<LightScreen> {
                             color: isOn ? Colors.blue : Colors.grey,
                             onPressed: () {
                               String newState = isOn ? 'Off' : 'On';
-                              ref
+                              FirebaseDatabase.instance
+                                  .ref('SmartHome/${rooms[index]}')
                                   .child('Light')
-                                  .update({'LivingRoom_LED_STATE': newState});
+                                  .update(
+                                      {'${rooms[index]}_LED_STATE': newState});
                             },
                           ),
                         ],

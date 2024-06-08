@@ -7,33 +7,24 @@ class MainContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      child: const Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: DeviceCard(
-                  title: 'Smart Light',
-                  icon: FontAwesomeIcons.lightbulb,
-                  status: '50% Brightness',
-                  active: true,
-                ),
-              ),
-              SizedBox(width: 20.0),
-              Expanded(
-                child: DeviceCard(
-                  title: 'Thermostat',
-                  icon: FontAwesomeIcons.temperatureHalf,
-                  status: '24.3°C',
-                  active: false,
-                ),
-              ),
-            ],
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(20.0),
+          child: const Text(
+            'Welcome to Your Smart Home!',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ],
-      ),
+        ),
+        Expanded(
+          child: Container(
+              // 여기에 다른 내용을 추가할 수 있습니다.
+              ),
+        ),
+      ],
     );
   }
 }
