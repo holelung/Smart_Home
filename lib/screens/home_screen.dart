@@ -144,7 +144,7 @@ class Header extends StatelessWidget {
               ),
               const SizedBox(width: 10.0),
               const Text(
-                "Itc 801",
+                "MJC님의 집",
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
             ],
