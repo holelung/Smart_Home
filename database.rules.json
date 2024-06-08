@@ -1,8 +1,6 @@
 {
-"rules": { 
-  "$uid": {
-        ".read": "$uid != null",
-        ".write": "$uid != null"  
-          }
-   }
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
 }
