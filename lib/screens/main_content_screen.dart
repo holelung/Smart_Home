@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smart_home_project/widgets/device_card_widget.dart';
 
 class MainContent extends StatelessWidget {
   const MainContent({super.key});
